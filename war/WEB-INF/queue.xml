@@ -1,0 +1,11 @@
+<queue-entries>
+  <queue>
+    <!-- multi purpose queue for task that need to be processed quite quickly -->
+    <name>default</name>
+    <rate>1/s</rate>
+    <bucket-size>40</bucket-size>
+    <max-concurrent-requests>50</max-concurrent-requests>
+  </queue>
+  
+  
+</queue-entries>
