@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+  <cron>
+    <url>/cron/channelmanager</url>
+    <description>remove too old presences in chat</description>
+    <schedule>every 3 minutes</schedule>
+  </cron>
+  <cron>
+    <url>/cron/synchroforum</url>
+    <description>Synchronize game and forum</description>
+    <schedule>every day 04:00</schedule>
+    <timezone>Europe/Paris</timezone>
+  </cron>
+  <cron>
+    <url>/cron/gameupdate</url>
+    <description>Check for any game update</description>
+    <schedule>every 5 hours</schedule>
+    <timezone>Europe/Paris</timezone>
+  </cron>
+</cronentries>
