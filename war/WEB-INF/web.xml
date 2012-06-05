@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  
+  <!-- Servlets -->
+  
+  <servlet>
+    <servlet-name>Services</servlet-name>
+    <servlet-class>com.fullmetalgalaxy.server.GameServicesImpl</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Services</servlet-name>
+    <url-pattern>/game/Services</url-pattern>
+  </servlet-mapping>
+    
+    <servlet>
+       <servlet-name>ImageServlet</servlet-name>
+       <servlet-class>com.fullmetalgalaxy.server.image.ImageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+       <servlet-name>ImageServlet</servlet-name>
+       <url-pattern>/ImageServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+       <servlet-name>AccountServlet</servlet-name>
+       <servlet-class>com.fullmetalgalaxy.server.AccountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+       <servlet-name>AccountServlet</servlet-name>
+       <url-pattern>/AccountServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+       <servlet-name>PMServlet</servlet-name>
+       <servlet-class>com.fullmetalgalaxy.server.PMServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+       <servlet-name>PMServlet</servlet-name>
+       <url-pattern>/PMServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+       <servlet-name>AdminServlet</servlet-name>
+       <servlet-class>com.fullmetalgalaxy.server.AdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+       <servlet-name>AdminServlet</servlet-name>
+       <url-pattern>/admin/Servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+       <servlet-name>PingServlet</servlet-name>
+       <servlet-class>com.fullmetalgalaxy.server.PingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+       <servlet-name>PingServlet</servlet-name>
+       <url-pattern>/ping</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+       <servlet-name>ChannelManager</servlet-name>
+       <servlet-class>com.fullmetalgalaxy.server.ChannelManager</servlet-class>
+    </servlet>
+    <servlet-mapping>
+       <servlet-name>ChannelManager</servlet-name>
+       <url-pattern>/cron/channelmanager</url-pattern>
+    </servlet-mapping>
+  
+    <servlet>
+       <servlet-name>SynchroForum</servlet-name>
+       <servlet-class>com.fullmetalgalaxy.server.forum.SynchroForum</servlet-class>
+    </servlet>
+    <servlet-mapping>
+       <servlet-name>SynchroForum</servlet-name>
+       <url-pattern>/cron/synchroforum</url-pattern>
+    </servlet-mapping>
+  
+    <servlet>
+       <servlet-name>GameUpdate</servlet-name>
+       <servlet-class>com.fullmetalgalaxy.server.GameUpdate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+       <servlet-name>GameUpdate</servlet-name>
+       <url-pattern>/cron/gameupdate</url-pattern>
+    </servlet-mapping>
+  
+  
+    <servlet>
+       <servlet-name>XMPPMessageServlet</servlet-name>
+       <servlet-class>com.fullmetalgalaxy.server.xmpp.XMPPMessageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+       <servlet-name>XMPPMessageServlet</servlet-name>
+       <url-pattern>/_ah/xmpp/message/chat/</url-pattern>
+    </servlet-mapping>
+  
+    <servlet>
+       <servlet-name>XMPPAvailableServlet</servlet-name>
+       <servlet-class>com.fullmetalgalaxy.server.xmpp.XMPPAvailableServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+       <servlet-name>XMPPAvailableServlet</servlet-name>
+       <url-pattern>/_ah/xmpp/presence/available/</url-pattern>
+    </servlet-mapping>
+  
+    <servlet>
+       <servlet-name>XMPPUnavailableServlet</servlet-name>
+       <servlet-class>com.fullmetalgalaxy.server.xmpp.XMPPUnavailableServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+       <servlet-name>XMPPUnavailableServlet</servlet-name>
+       <url-pattern>/_ah/xmpp/presence/unavailable/</url-pattern>
+    </servlet-mapping>
+  
+    <servlet>
+       <servlet-name>XMPPProbeServlet</servlet-name>
+       <servlet-class>com.fullmetalgalaxy.server.xmpp.XMPPProbeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+       <servlet-name>XMPPProbeServlet</servlet-name>
+       <url-pattern>/_ah/xmpp/presence/probe/</url-pattern>
+    </servlet-mapping>
+  
+    <servlet>
+       <servlet-name>XMPPSuscribeServlet</servlet-name>
+       <servlet-class>com.fullmetalgalaxy.server.xmpp.XMPPSuscribeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+       <servlet-name>XMPPSuscribeServlet</servlet-name>
+       <url-pattern>/_ah/xmpp/subscription/subscribe/</url-pattern>
+    </servlet-mapping>
+  
+    <servlet>
+       <servlet-name>XMPPUnsuscribeServlet</servlet-name>
+       <servlet-class>com.fullmetalgalaxy.server.xmpp.XMPPUnsuscribeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+       <servlet-name>XMPPUnsuscribeServlet</servlet-name>
+       <url-pattern>/_ah/xmpp/subscription/unsubscribe/</url-pattern>
+    </servlet-mapping>
+  
+	<servlet>
+		<servlet-name>_ah_sessioncleanup</servlet-name>
+		<servlet-class>com.google.apphosting.utils.servlet.SessionCleanupServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	  <servlet-name>_ah_sessioncleanup</servlet-name>
+	  <url-pattern>/_ah/sessioncleanup</url-pattern>
+	</servlet-mapping>
+
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+	<security-constraint>
+	   <web-resource-collection>
+	       <url-pattern>/admin/accounts.jsp</url-pattern>
+	       <url-pattern>/admin/index.jsp</url-pattern>
+	       <!-- url-pattern>/cron/*</url-pattern-->
+	   </web-resource-collection>
+	   <auth-constraint>
+	       <role-name>admin</role-name>
+	   </auth-constraint>
+	</security-constraint>
+
+	<jsp-config>
+        <jsp-property-group>
+            <url-pattern>/i18n/fr/index.html</url-pattern>
+            <url-pattern>/i18n/fr/menu.html</url-pattern>
+            <url-pattern>/i18n/fr/puzzleslist.jsp</url-pattern>
+            <url-pattern>/i18n/fr/help/index.html</url-pattern>
+            <url-pattern>/i18n/fr/help/menu.html</url-pattern>
+            <url-pattern>/i18n/fr/help/rules.html</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+        </jsp-property-group>
+    </jsp-config>
+
+</web-app>
