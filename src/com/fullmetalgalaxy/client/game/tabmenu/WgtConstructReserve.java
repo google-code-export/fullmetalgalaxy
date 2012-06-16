@@ -31,6 +31,7 @@ import com.fullmetalgalaxy.model.EnuZoom;
 import com.fullmetalgalaxy.model.Sector;
 import com.fullmetalgalaxy.model.TokenType;
 import com.fullmetalgalaxy.model.persist.EbConfigGameVariant;
+import com.fullmetalgalaxy.model.persist.EbToken;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
@@ -68,14 +69,14 @@ public class WgtConstructReserve extends Composite
     
     for(Entry<TokenType,Integer> entry : variant.getConstructReserve().entrySet() )
     {
-      Image wgtToken = new Image();
+      Image wgtToken = null;
       if( entry.getKey().canBeColored(  ) )
       {
-        TokenImages.getTokenImage( myColor, EnuZoom.Medium, entry.getKey(),
-            Sector.SouthEast ).applyTo( wgtToken );
+        wgtToken = new Image( TokenImages.getTokenImage( myColor, EnuZoom.Medium, entry.getKey(),
+            Sector.SouthEast ) );
       } else {
-        TokenImages.getTokenImage( new EnuColor(EnuColor.None), EnuZoom.Medium, entry.getKey(),
-            Sector.SouthEast ).applyTo( wgtToken );
+        wgtToken = new Image( TokenImages.getTokenImage( new EnuColor( EnuColor.None ),
+            EnuZoom.Medium, entry.getKey(), Sector.SouthEast ) );
       }
       m_panel.add( wgtToken );
       
