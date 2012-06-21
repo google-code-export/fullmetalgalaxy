@@ -1,0 +1,34 @@
+
+syntax: regexp
+^war/WEB-INF/classes$
+syntax: regexp
+^war/WEB-INF/lib/appengine.*\.jar$
+syntax: regexp
+^war/WEB-INF/lib/datanucleus.*\.jar$
+syntax: regexp
+^war/WEB-INF/lib/geronimo.*\.jar$
+syntax: regexp
+^war/WEB-INF/lib/gwt.*\.jar$
+syntax: regexp
+^war/WEB-INF/lib/jdo2-api.*\.jar$
+syntax: regexp
+^war/WEB-INF/lib/jsr107cache.*\.jar$
+syntax: regexp
+^war/game$
+syntax: regexp
+^war/WEB-INF/appengine-generated$
+syntax: regexp
+^javadoc$
+syntax: regexp
+^.*Thumbs\.db$
+syntax: regexp
+^.gwt$
+
+syntax: regexp
+^war/WEB-INF/deploy$
+syntax: regexp
+^src/com/fullmetalgalaxy/server/forum/forumaccount\.properties$
+syntax: regexp
+^gwt-unitCache$
+syntax: regexp
+^war/WEB-INF/lib/google_sql\.jar$
