@@ -159,6 +159,7 @@ public class EbBase extends AnPojoBase
     setId( p_update.getId() );
   }
 
+
   public long getId()
   {
     if( id == null )
