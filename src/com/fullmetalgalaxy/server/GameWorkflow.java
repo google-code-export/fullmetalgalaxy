@@ -42,6 +42,7 @@ import com.fullmetalgalaxy.model.Location;
 import com.fullmetalgalaxy.model.RpcFmpException;
 import com.fullmetalgalaxy.model.Tide;
 import com.fullmetalgalaxy.model.TokenType;
+import com.fullmetalgalaxy.model.persist.AIEnum;
 import com.fullmetalgalaxy.model.persist.EbRegistration;
 import com.fullmetalgalaxy.model.persist.EbToken;
 import com.fullmetalgalaxy.model.persist.Game;
@@ -57,6 +58,7 @@ import com.fullmetalgalaxy.model.persist.gamelog.EbEvtTide;
 import com.fullmetalgalaxy.model.persist.gamelog.EbEvtTimeStep;
 import com.fullmetalgalaxy.model.persist.gamelog.EbGameJoin;
 import com.fullmetalgalaxy.model.persist.gamelog.GameLogType;
+import com.fullmetalgalaxy.server.ai.PlayerHAL9000;
 
 /**
  * @author vlegendr
@@ -404,6 +406,38 @@ public class GameWorkflow
         // triggers
         p_game.execTriggers();
       }
+    } catch( RpcFmpException e )
+    {
+      // do nothing more as it is better to cancel update than cancel whole
+      // player action
+      log.error( e );
+    }
+
+    // check for AI to play
+    try
+    {
+      for( EbRegistration registration : p_game.getSetRegistration() )
+      {
+        AIEnum ai = registration.getAccount().getAI();
+        if( ai != null && p_game.getCurrentPlayerIds().contains( registration.getId() ) )
+        switch( ai )
+        {
+        case HAL9000:
+          PlayerHAL9000 player = new PlayerHAL9000();
+            ArrayList<AnEvent> events = player.play( p_game, registration );
+            for( AnEvent event : events )
+            {
+              event.checkedExec( p_game );
+              p_game.addEvent( event );
+              eventAdded.add( event );
+            }
+          break;
+
+        default:
+          break;
+        }
+      }
+
     } catch( RpcFmpException e )
     {
       // do nothing more as it is better to cancel update than cancel whole

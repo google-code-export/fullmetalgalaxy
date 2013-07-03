@@ -63,7 +63,16 @@ public class EbPublicAccount extends EbBase
     m_pseudo = "";
   }
 
-
+  public AIEnum getAI()
+  {
+    try
+    {
+      return AIEnum.valueOf( getPseudo() );
+    } catch( Exception e )
+    {
+    }
+    return null;
+  }
 
   @Override
   public String toString()
