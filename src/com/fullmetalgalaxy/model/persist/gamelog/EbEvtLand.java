@@ -86,35 +86,26 @@ public class EbEvtLand extends AnEventPlay
     return getPosition();
   }
 
-  /* (non-Javadoc)
-   * @see com.fullmetalgalaxy.model.persist.AnAction#check()
-   */
-  @Override
-  public void check(Game p_game) throws RpcFmpException
+  public static boolean isValidLandingPosition(Game p_game, AnBoardPosition p_position)
   {
-    super.check(p_game);
+    EbEvtLand evtLand = new EbEvtLand();
+    evtLand.setGame( p_game );
+    evtLand.setToken( new EbToken() );
+    evtLand.setPosition( p_position );
+    evtLand.setAuto( true );
+    boolean isValid = true;
+    try
+    {
+      evtLand.checkValidLandingPosition( p_game );
+    } catch( Exception e )
+    {
+      isValid = false;
+    }
+    return isValid;
+  }
 
-    if( getPosition().getX() == -1 )
-    {
-      // landing position isn't choose yet...
-      throw new RpcFmpException("");
-    }
-    
-    if( getToken( p_game ).getType() != TokenType.Freighter
-        || getToken( p_game ).getLocation() != Location.Orbit )
-    {
-      // not probable error
-      throw new RpcFmpException( "Only Freighter in orbit can be landed." );
-    }
-    // check that player control the token color
-    EbRegistration myRegistration = getMyRegistration(p_game);
-    assert myRegistration != null;
-    if( !myRegistration.getEnuColor().isColored( getToken(p_game).getColor() ) )
-    {
-      throw new RpcFmpException( errMsg().CantMoveDontControl(
-          Messages.getColorString( getAccountId(), getToken( p_game ).getColor() ),
-          Messages.getColorString( getAccountId(), myRegistration.getColor() ) ) );
-    }
+  void checkValidLandingPosition(Game p_game) throws RpcFmpException
+  {
     // check freighter isn't landing on sea neither montain
     // get the 4 landing hexagon
     AnBoardPosition landingPosition[] = new AnBoardPosition[4];
@@ -166,6 +157,38 @@ public class EbEvtLand extends AnEventPlay
     {
       throw new RpcFmpException( errMsg().CantLandTooCloseBorder() );
     }
+  }
+
+  /* (non-Javadoc)
+   * @see com.fullmetalgalaxy.model.persist.AnAction#check()
+   */
+  @Override
+  public void check(Game p_game) throws RpcFmpException
+  {
+    super.check( p_game );
+
+    if( getPosition().getX() == -1 )
+    {
+      // landing position isn't choose yet...
+      throw new RpcFmpException( "" );
+    }
+
+    if( getToken( p_game ).getType() != TokenType.Freighter
+        || getToken( p_game ).getLocation() != Location.Orbit )
+    {
+      // not probable error
+      throw new RpcFmpException( "Only Freighter in orbit can be landed." );
+    }
+    // check that player control the token color
+    EbRegistration myRegistration = getMyRegistration( p_game );
+    assert myRegistration != null;
+    if( !myRegistration.getEnuColor().isColored( getToken( p_game ).getColor() ) )
+    {
+      throw new RpcFmpException( errMsg().CantMoveDontControl(
+          Messages.getColorString( getAccountId(), getToken( p_game ).getColor() ),
+          Messages.getColorString( getAccountId(), myRegistration.getColor() ) ) );
+    }
+    checkValidLandingPosition( p_game );
   }
 
   /* (non-Javadoc)
